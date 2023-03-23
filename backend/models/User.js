@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-
+const { Schema } = mongoose;
 
 
 const UserSchema = new Schema({
@@ -14,12 +14,12 @@ const UserSchema = new Schema({
         unique: true
     },
     password: {
-        type: password,
+        type: String,
         required: true
     },
     date: {
         type: Date,
-        default: date.now
+        default: Date.now
     }
 });
 
