@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const JWT_SECRET = "aliisgood$oy"
 
-// Create a user using :Post ('/api/auth/) !Does'nt requir auth/create user /no login required
+//ROUTE:1 Create a user using :Post ('/api/auth/) !Does'nt requir api/auth/createuser /no login required
 router.post('/createuser', [
     body('email', 'Enter a valid Email').isEmail(),
     body('name', 'Name must be 3 words').isLength({ min: 3 }),
@@ -38,17 +38,46 @@ router.post('/createuser', [
 
         }
         const authToken = jwt.sign(data, JWT_SECRET);
-        console.log(authToken)
+        // console.log(authToken)
         res.json({ authToken })
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Here Some Error Ocuured")
+        res.status(500).send("Internal Server Error")
     }
+})
 
-
-
-
-
+//ROUTE:2 Authenticate a user using :Post ('/api/auth/login)  no login required
+router.post('/login', [
+    body('email', 'Enter a valid Email').isEmail(),
+    // body('name', 'Name must be 3 words').isLength({ min: 3 }),
+    body('password', 'Password can not be blank').exists(),
+], async (req, res) => {
+    // If there are error,return Bad request and error
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const { email, password } = req.body;
+    try {
+        let user = await User.findOne({ email })
+        if (!user) {
+            return res.status(400).json({ error: "Please try to login with correct credential" })
+        }
+        const passwordCompare = await bcrypt.compare(password, user.password)
+        if (!passwordCompare) {
+            return res.status(400).json({ error: "Please try to login with correct credential" })
+        }
+        const data = {
+            user: {
+                id: user.id
+            }
+        }
+        const authToken = jwt.sign(data, JWT_SECRET);
+        res.json({ authToken })
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send("Internal Server Error")
+    }
 
 })
 
