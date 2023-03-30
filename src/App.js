@@ -17,7 +17,7 @@ function App() {
 
 
       <Navbar />
-      <Alert message="This is Awesome skynote App" />
+      <Alert message="Your Note added" />
       <div className="container">
         <Routes>
           <Route exact path="/" element={<Home />}></Route>

@@ -37,7 +37,35 @@ const AppProvider = ({ children }) => {
         }
     ]
     const [notes, setNotes] = useState(notesInitial);
-    return <AppContext.Provider value={{ notes, setNotes }} >
+
+    // Add a Note
+    const addNote = (title, description, tag) => {
+        console.log("Adding a new note")
+        // TODO API CALL
+        const note = {
+            "_id": "641f428e3ef01f5a37fb91b4",
+            "user": "641eeb10222dc94662e7e871",
+            "title": title,
+            "description": description,
+            "tag": tag,
+            "date": "2023-03-25T18:50:54.615Z",
+            "__v": 0
+        }
+        setNotes(notes.concat(note))
+    }
+
+    // Delete a Note
+    const deleteNote = () => {
+
+    }
+
+    // Edit a Note
+    const editNote = () => {
+
+    }
+
+
+    return <AppContext.Provider value={{ notes, addNote, deleteNote, editNote }} >
         {children}
     </AppContext.Provider >
 
