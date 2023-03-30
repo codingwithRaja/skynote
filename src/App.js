@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import { Route, Routes } from "react-router-dom";
 import Home from './components/Home';
 import About from './components/About';
+import Alert from './components/Alert';
 
 
 
@@ -16,6 +17,7 @@ function App() {
 
 
       <Navbar />
+      <Alert message="This is Awesome skynote App" />
       <div className="container">
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
