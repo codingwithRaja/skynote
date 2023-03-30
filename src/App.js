@@ -6,20 +6,30 @@ import Home from './components/Home';
 import About from './components/About';
 
 
+
+
+
 function App() {
+
   return (
     <>
-      <div className='App'>
-        <Navbar />
+
+
+      <Navbar />
+      <div className="container">
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path="/About" element={<About />}></Route>
         </Routes>
-        <h1>this is Skynote_app</h1>
       </div>
+
     </>
 
   );
 }
 
+
 export default App;
+
+
+

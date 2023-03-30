@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on http://localhost:${port}`)
+    console.log(`Sky_Note backend listening on http://localhost:${port}`)
 })
 
