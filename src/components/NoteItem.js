@@ -15,6 +15,7 @@ const NoteItem = (props) => {
             <div className="card my-3" >
 
                 <div className="card-body">
+                    <span className="position-absolute top-0  badge rounded-pill bg-warning" style={{ transform: "translate(-27%,-50%)" }}>{note.tag}</span>
                     <h5 className="card-title text-info fst-italic fw-bold">{note.title}</h5>
                     <p className="card-text text-secondary">{note.description} </p>
                     <i className="fa-solid fa-trash mx-3" onClick={() => { deleteNote(note._id) }}></i>
