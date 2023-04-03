@@ -27,7 +27,7 @@ const SignUp = (props) => {
         if (json.success) {
             //  Save the authToken and  redirect
             localStorage.setItem('token', json.authToken);
-            navigate("/");
+            navigate("/login");
             props.showAlert(":-Account successfully created", "success")
         }
         else {
@@ -41,6 +41,8 @@ const SignUp = (props) => {
     }
     return (
         <div>
+            <h2 className='mt-3'>Signup to continue to Sky-Note</h2>
+
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>

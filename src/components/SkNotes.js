@@ -2,15 +2,27 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../context/notes/Context';
 import NoteItem from './NoteItem';
 import AddNote from './AddNote';
+import { useNavigate } from "react-router-dom";
+
 // import Modal from './Modal';
 
 
 function SkNotes(props) {
     const context = useContext(AppContext)
+    let navigate = useNavigate();
     const { notes, getNotes, editNote } = context;
     useEffect(() => {
-        getNotes();
-        // eslint-disable-next-line
+        if (localStorage.getItem('token')) {
+            getNotes();
+
+        }
+
+        else {
+            navigate("/login");
+        }
+
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const ref = useRef(null)
     const refClose = useRef(null)

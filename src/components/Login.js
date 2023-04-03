@@ -37,19 +37,23 @@ const Login = (props) => {
         setCred({ ...cred, [e.target.name]: e.target.value })
     }
     return (
-        <div><form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="email">Email address</label>
-                <input type="email" className="form-control" onChange={onChange} value={cred.email} id="email" name='email' aria-describedby="emailHelp" placeholder="Enter email" />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" className="form-control" onChange={onChange} value={cred.password} id="password" name='password' placeholder="Password" />
-            </div>
+        <>
+            <h2 className='mt-3'>Login to continue to Sky-Note</h2>
 
-            <button type="submit" className="btn btn-primary my-2" >Submit</button>
-        </form></div>
+            <div><form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="email">Email address</label>
+                    <input type="email" className="form-control" onChange={onChange} value={cred.email} id="email" name='email' aria-describedby="emailHelp" placeholder="Enter email" />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" className="form-control" onChange={onChange} value={cred.password} id="password" name='password' placeholder="Password" />
+                </div>
+
+                <button type="submit" className="btn btn-primary my-2" >Submit</button>
+            </form></div>
+        </>
     )
 }
 
