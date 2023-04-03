@@ -3,11 +3,11 @@ import SkNotes from './SkNotes';
 
 
 
-const Home = () => {
-
+const Home = (props) => {
+    const { showAlert } = props
     return (
         <>
-            <SkNotes />
+            <SkNotes showAlert={showAlert} />
         </>
     )
 }

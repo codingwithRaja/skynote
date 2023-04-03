@@ -5,7 +5,7 @@ import AddNote from './AddNote';
 // import Modal from './Modal';
 
 
-function SkNotes() {
+function SkNotes(props) {
     const context = useContext(AppContext)
     const { notes, getNotes, editNote } = context;
     useEffect(() => {
@@ -20,12 +20,14 @@ function SkNotes() {
         ref.current.click();
         setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
 
+
     }
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "default" })
     const addHandleClick = (e) => {
         console.log("Note is updated", note);
         editNote(note.id, note.etitle, note.edescription, note.etag);
         refClose.current.click();
+        props.showAlert(":-Updated successfully", "success")
     }
 
     const onChange = (e) => {
@@ -33,7 +35,7 @@ function SkNotes() {
     }
     return (
         <>
-            <AddNote />
+            <AddNote showAlert={props.showAlert} />
             <div>
                 <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Launch demo modal
@@ -78,7 +80,7 @@ function SkNotes() {
                 <h2 className='text-info fst-italic fw-bold'>Your Notes</h2>
 
                 {notes.map((note) => {
-                    return <NoteItem key={note._id} note={note} updateNote={updateNote} />
+                    return <NoteItem key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert} />
                 })}
                 <div className="container ">
                     {notes.length === 0 && 'No Notes to display'}
